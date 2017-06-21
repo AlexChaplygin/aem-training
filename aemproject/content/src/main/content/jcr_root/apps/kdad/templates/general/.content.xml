@@ -11,14 +11,9 @@
         <par
             jcr:primaryType="nt:unstructured"
             sling:resourceType="foundation/components/parsys">
-            <text
-                jcr:created="{Date}2017-06-19T18:46:53.746+03:00"
-                jcr:createdBy="admin"
-                jcr:lastModified="{Date}2017-06-19T18:47:28.339+03:00"
-                jcr:lastModifiedBy="admin"
+            <title
                 jcr:primaryType="nt:unstructured"
-                sling:resourceType="foundation/components/text"
-                textIsRich="true"/>
+                sling:resourceType="kdad/components/content/title"/>
         </par>
     </jcr:content>
 </jcr:root>
