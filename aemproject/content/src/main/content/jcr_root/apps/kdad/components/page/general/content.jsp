@@ -1,18 +1,16 @@
 <%@include file="/libs/foundation/global.jsp" %>
 <div class="container_16">
     <div class="grid_16">
-        <div> breadcrumb</div>
+        <cq:include path="breadcrumb" resourceType="foundation/components/breadcrumb" />
         <cq:include path="par" resourceType="foundation/components/parsys"/>
     </div>
     <div>
-        <div class="myclass"> par</div>
     </div>
     <div class="grid_4 right_container">
-        <div> newslist</div>
-        <div> rightpar</div>
+        <cq:include path="newslist" resourceType="kdad/components/content/listchildren" />
+
     </div>
     <div class="clear"></div>
 
-
 </div>
-<p style="background-color:red">This paragraph refers to two classes.</p>
+<p class="myclass">Trying design</p>

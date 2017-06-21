@@ -13,9 +13,9 @@
                 <items jcr:primaryType="cq:WidgetCollection">
                     <title
                         jcr:primaryType="cq:Widget"
+                        allowBlank="false"
                         fieldLabel="Enter title:"
                         name="./jcr:title"
-                        allowBlank="false"
                         xtype="textfield"/>
                     <description
                         jcr:primaryType="cq:Widget"
