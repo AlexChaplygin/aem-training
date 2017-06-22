@@ -2,5 +2,5 @@
 <workspaceFilter version="1.0">
     <filter root="/apps/aemproject"/>
     <filter root="/apps/kdad"/>
-    <filter root="/etc/designs/aem-company"/>
+    <filter root="/etc/designs/clientlibs/testlib"/>
 </workspaceFilter>
