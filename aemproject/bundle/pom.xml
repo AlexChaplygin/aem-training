@@ -53,6 +53,14 @@
             <artifactId>jcr</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-atinject_1.0_spec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.models.api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.api</artifactId>
         </dependency>
@@ -86,6 +94,9 @@
                 <configuration>
                     <instructions>
                         <Bundle-SymbolicName>com.aem.community.aemproject-bundle</Bundle-SymbolicName>
+                        <Sling-Model-Packages>
+                            com.aem.models
+                        </Sling-Model-Packages>
                     </instructions>
                 </configuration>
             </plugin>
