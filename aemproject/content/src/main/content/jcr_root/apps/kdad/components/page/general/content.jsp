@@ -1,7 +1,12 @@
-<%@include file="/libs/foundation/global.jsp" %>
-<%@ taglib prefix="sling1" uri="http://sling.apache.org/taglibs/sling" %>
 
-<sling1:adaptTo adaptable="${resource}" adaptTo="com.aem.models.TrainingPage" var="trainingPageComponent"/>
+<%@taglib prefix="sling" uri="http://sling.apache.org/taglibs/sling" %>
+<%@taglib prefix="cq" uri="http://www.day.com/taglibs/cq/1.0" %>
+
+<%--<%@include file="/libs/foundation/global.jsp" %>--%>
+
+<cq:defineObjects />
+
+<sling:adaptTo adaptable="${resource}" adaptTo="com.aem.models.TrainingPage" var="trainingPageComponent"/>
 
 <div class="container_16">
     <div class="grid_16">
