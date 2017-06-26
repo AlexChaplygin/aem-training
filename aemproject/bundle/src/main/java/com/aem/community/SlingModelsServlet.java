@@ -9,6 +9,7 @@ import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.request.RequestPathInfo;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
@@ -27,15 +28,18 @@ public class SlingModelsServlet extends SlingAllMethodsServlet{
     private static final long serialVersionUID = 1L;
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Reference
-    ResourceResolverFactory resourceResolverFactory;
-    ResourceResolver resourceResolver;
+    private ResourceResolver resourceResolver;
+
     public void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)throws ServletException,IOException{
         logger.info("inside sling model test servlet");
         response.setContentType("text/html");
         try {
-            resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
-            Resource resource = resourceResolver.getResource("/content/kdad/training-general-page/page-stage/jcr:content");
+            resourceResolver = request.getResourceResolver();
+
+            String s = request.getPathInfo();
+            RequestPathInfo pathinfo = request.getRequestPathInfo();
+
+            Resource resource = resourceResolver.resolve("/content/kdad/training-general-page/page-stage/jcr:content");
             ValueMap valueMap=resource.adaptTo(ValueMap.class);
 
             response.getWriter().write("Output from ValueMap is template: "+valueMap.get("cq:template").toString()+"");
@@ -45,10 +49,6 @@ public class SlingModelsServlet extends SlingAllMethodsServlet{
 
         } catch (Exception e) {
             logger.error(e.getMessage());
-        }
-        finally{
-            if(resourceResolver.isLive())
-                resourceResolver.close();
         }
 
     }
