@@ -11,6 +11,6 @@ import java.util.List;
 
 public interface ImageFinder {
 
-    List<String> getImagesByTag(Resource resource);
+    List<String> getImagesByTag(Resource resource, String[] tags);
 
 }

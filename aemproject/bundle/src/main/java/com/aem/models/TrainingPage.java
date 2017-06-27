@@ -8,9 +8,12 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 //import com.day.cq.commons.jcr.JcrConstants;
 
+import com.aem.services.SampleServiceFactory;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+import org.apache.sling.models.annotations.Filter;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Source;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import com.day.cq.wcm.api.Page;
@@ -27,6 +30,11 @@ public class TrainingPage {
     @Inject
     @Named("jcr:title")
     private String title;
+
+    @Inject
+    @Source(value = "osgi-services")
+    @Filter(value = "(prop1=val1)")
+    private SampleServiceFactory sampleServiceFactories1;
 
     @Self
     private Resource resource;

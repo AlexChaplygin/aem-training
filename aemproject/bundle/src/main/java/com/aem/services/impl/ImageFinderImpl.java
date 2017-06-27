@@ -26,7 +26,7 @@ public class ImageFinderImpl implements ImageFinder {
 
     private Asset imageAsset = null;
 
-    public List<String> getImagesByTag(Resource resource){
+    public List<String> getImagesByTag(Resource resource, String [] tags){
 
         imagePathArrayList = new ArrayList<String>();
 
@@ -36,8 +36,11 @@ public class ImageFinderImpl implements ImageFinder {
         Map<String, String> predicates = new HashMap<String, String>();
         predicates.put("path", "/content/dam");
         predicates.put("type", "dam:Asset");
-        predicates.put("group.property", "jcr:content/metadata/cq:tags");
-        predicates.put("group.property.value", "training:tag1");
+        predicates.put("group.p.or", "true");
+
+        for(int i =0; i<tags.length; i++)
+            predicates.put("group."+i+"_fulltext", tags[i]);
+        predicates.put("group.fulltext.realPath", "jcr:content/metadata/cq:tags");
 
         Query query = queryBuilder.createQuery(PredicateGroup.create(predicates), session);
 

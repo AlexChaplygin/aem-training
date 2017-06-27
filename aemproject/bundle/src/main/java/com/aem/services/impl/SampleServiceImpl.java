@@ -1,10 +1,14 @@
 package com.aem.services.impl;
 
 import com.aem.services.SampleService;
+import com.aem.services.SampleServiceFactory;
 import org.apache.felix.scr.annotations.*;
 import org.apache.sling.commons.osgi.PropertiesUtil;
+import org.apache.sling.models.annotations.Filter;
+import org.apache.sling.models.annotations.Source;
 import org.osgi.service.component.ComponentContext;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -29,10 +33,27 @@ public class SampleServiceImpl implements SampleService{
 
     private List<String> propertiesValues;
 
+//    @Reference(target = "(prop1=val1)")
+//    private SampleServiceFactory sampleServiceFactory;
+
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL_MULTIPLE, referenceInterface = SampleServiceFactory.class,
+            policy = ReferencePolicy.DYNAMIC, bind = "bindService", unbind = "unbindService")
+    private List<SampleServiceFactory> sampleServiceFactories = new ArrayList<SampleServiceFactory>();
+
+    public void bindService(SampleServiceFactory sampleServiceFactory){
+        sampleServiceFactories.add(sampleServiceFactory);
+    }
+
+    public void unbindService(SampleServiceFactory sampleServiceFactory){
+        sampleServiceFactories.remove(sampleServiceFactory);
+    }
+
     @Activate
     @Modified
 //    public void activate(Map<String, Object> properties){
     public void activate(ComponentContext componentContext){
+
+
 
         propertiesValues = new ArrayList<String>();
 

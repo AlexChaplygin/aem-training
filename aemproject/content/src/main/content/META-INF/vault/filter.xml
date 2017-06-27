@@ -3,4 +3,6 @@
     <filter root="/apps/aemproject"/>
     <filter root="/apps/kdad"/>
     <filter root="/etc/designs/clientlibs/testlib"/>
+    <filter root="/etc/workflow/launcher/config/trainingLauncher"/>
+    <filter root="/etc/workflow/models/trainingworkflow"/>
 </workspaceFilter>

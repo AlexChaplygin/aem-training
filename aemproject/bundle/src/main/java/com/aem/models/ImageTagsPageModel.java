@@ -25,6 +25,10 @@ public class ImageTagsPageModel {
     private String title;
 
     @Inject
+    @Named("cq:tags")
+    private String[] tags;
+
+    @Inject
     private ImageFinder imageFinder;
 
     @Self
@@ -37,7 +41,7 @@ public class ImageTagsPageModel {
 
         imagePathArrayList = new ArrayList<String>();
 
-        imagePathArrayList = imageFinder.getImagesByTag(resource);
+        imagePathArrayList = imageFinder.getImagesByTag(resource, tags);
     }
 
     public String getTitle() {
