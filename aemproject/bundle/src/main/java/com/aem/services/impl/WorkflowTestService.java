@@ -1,60 +1,24 @@
 package com.aem.services.impl;
 
+import com.day.cq.tagging.Tag;
+import com.day.cq.tagging.TagManager;
 import org.apache.felix.scr.annotations.*;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.StringWriter;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ArrayList;
-
-import javax.jcr.Repository;
-import javax.jcr.SimpleCredentials;
-import javax.jcr.Node;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.apache.jackrabbit.commons.JcrUtils;
-
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
-import javax.jcr.RepositoryException;
-
-import org.apache.jackrabbit.commons.JcrUtils;
-
+import org.apache.sling.api.resource.*;
+import org.apache.sling.jcr.resource.JcrResourceConstants;
+import java.util.Collections;
 import javax.jcr.Session;
-import javax.jcr.Node;
-import org.osgi.framework.Constants;
+import javax.jcr.query.Query;
+import javax.jcr.query.QueryManager;
+import javax.jcr.query.QueryResult;
 
+import org.osgi.framework.Constants;
 import com.adobe.granite.workflow.WorkflowException;
 import com.adobe.granite.workflow.WorkflowSession;
 import com.adobe.granite.workflow.exec.WorkItem;
 import com.adobe.granite.workflow.exec.WorkflowData;
 import com.adobe.granite.workflow.exec.WorkflowProcess;
 import com.adobe.granite.workflow.metadata.MetaDataMap;
-import com.day.cq.mailer.MessageGateway;
 import com.day.cq.mailer.MessageGatewayService;
-
-import org.apache.commons.mail.Email;
-import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.SimpleEmail;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-
-//Sling Imports
-import org.apache.sling.api.resource.ResourceResolverFactory ;
-import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.Resource;
-import com.day.cq.wcm.api.Page;
 
 /**
  * Created by chaplygin on 27.06.2017.
@@ -69,10 +33,57 @@ import com.day.cq.wcm.api.Page;
 public class WorkflowTestService implements WorkflowProcess {
 
     @Reference
+    ResourceResolverFactory resourceResolverFactory;
+
+    @Reference
     private MessageGatewayService messageGatewayService;
 
     public void execute(WorkItem item, WorkflowSession wfsession, MetaDataMap args) throws WorkflowException {
 
-            String s = "";
+        WorkflowData workflowData = item.getWorkflowData();
+
+        String path = workflowData.getPayload().toString();
+
+        ResourceResolver resourceResolver = null;
+        Resource resource = null;
+
+        Session session = wfsession.adaptTo(Session.class);
+
+//        String queryStr = "";
+
+        try {
+
+            if(path.matches("^.*dog.*")) {
+
+                resourceResolver = getResourceResolver(session);
+
+//                QueryManager queryManager = session.getWorkspace().getQueryManager();
+//                Query query = queryManager.createQuery(queryStr, Query.JCR_SQL2);
+//                QueryResult result = query.execute();
+
+
+                resource = resourceResolver.getResource(path);
+                while (!resource.getResourceType().equals("dam:Asset"))
+                    resource = resource.getParent();
+
+                resource = resource.getChild("jcr:content/metadata");
+
+                TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
+                Tag tag = tagManager.createTag("training:dog", "dog", "tag dog for images");
+                tagManager.setTags(resource, new Tag[]{tag});
+
+//                Asset asset = resource.adaptTo(Asset.class);
+
+                resourceResolver.commit();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private ResourceResolver getResourceResolver(Session session) throws LoginException {
+        return resourceResolverFactory.getResourceResolver(Collections.<String, Object>singletonMap(JcrResourceConstants.AUTHENTICATION_INFO_SESSION,
+                session));
     }
 }

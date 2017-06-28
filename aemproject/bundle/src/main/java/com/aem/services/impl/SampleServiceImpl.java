@@ -36,6 +36,7 @@ public class SampleServiceImpl implements SampleService{
 //    @Reference(target = "(prop1=val1)")
 //    private SampleServiceFactory sampleServiceFactory;
 
+    // можно просто inject без bund unbind
     @Reference(cardinality = ReferenceCardinality.OPTIONAL_MULTIPLE, referenceInterface = SampleServiceFactory.class,
             policy = ReferencePolicy.DYNAMIC, bind = "bindService", unbind = "unbindService")
     private List<SampleServiceFactory> sampleServiceFactories = new ArrayList<SampleServiceFactory>();
