@@ -33,12 +33,12 @@ import com.day.cq.mailer.MessageGatewayService;
 public class WorkflowTestService implements WorkflowProcess {
 
     @Reference
-    ResourceResolverFactory resourceResolverFactory;
+    private ResourceResolverFactory resourceResolverFactory;
 
-    @Reference
-    private MessageGatewayService messageGatewayService;
+//    @Reference
+//    private MessageGatewayService messageGatewayService;
 
-    public void execute(WorkItem item, WorkflowSession wfsession, MetaDataMap args) throws WorkflowException {
+    public void execute(WorkItem item, WorkflowSession wfsession, MetaDataMap metaDataMap) throws WorkflowException {
 
         WorkflowData workflowData = item.getWorkflowData();
 
@@ -49,30 +49,19 @@ public class WorkflowTestService implements WorkflowProcess {
 
         Session session = wfsession.adaptTo(Session.class);
 
-//        String queryStr = "";
-
         try {
 
             if(path.matches("^.*dog.*")) {
 
                 resourceResolver = getResourceResolver(session);
 
-//                QueryManager queryManager = session.getWorkspace().getQueryManager();
-//                Query query = queryManager.createQuery(queryStr, Query.JCR_SQL2);
-//                QueryResult result = query.execute();
-
-
                 resource = resourceResolver.getResource(path);
-                while (!resource.getResourceType().equals("dam:Asset"))
-                    resource = resource.getParent();
-
-                resource = resource.getChild("jcr:content/metadata");
 
                 TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
                 Tag tag = tagManager.createTag("training:dog", "dog", "tag dog for images");
                 tagManager.setTags(resource, new Tag[]{tag});
 
-//                Asset asset = resource.adaptTo(Asset.class);
+                item.getWorkflowData().getMetaDataMap().put("metaDataMapValue", "testtttt");
 
                 resourceResolver.commit();
             }

@@ -1,4 +1,4 @@
-package com.aem.community;
+package com.aem.servlets;
 
 import static org.junit.Assert.*;
 

@@ -17,6 +17,8 @@
     <h3>Title: ${trainingPageComponent.title} </h3>
     <h3>Resource: ${trainingPageComponent.resource} </h3>
     <h3>Resource.path: ${trainingPageComponent.resource.path} </h3>
+    sdsf
+    <a href="${trainingPageComponent.title}">${trainingPageComponent.title}</a>
 
     <div class="grid_4 right_container">
         <cq:include path="newslist" resourceType="kdad/components/content/listchildren" />

@@ -114,7 +114,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-SymbolicName>com.aem.community.aemproject-bundle</Bundle-SymbolicName>
+                        <Bundle-SymbolicName>com.aem.servlets.aemproject-bundle</Bundle-SymbolicName>
                         <Sling-Model-Packages>
                             com.aem.models
                         </Sling-Model-Packages>

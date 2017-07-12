@@ -6,7 +6,7 @@
     enabled="{Boolean}true"
     eventType="{Long}1"
     excludeList=""
-    glob="/content/dam(/.*/)renditions/original"
-    nodetype="nt:file"
+    glob="/content/dam(/.*/)metadata"
+    nodetype="nt:unstructured"
     runModes="author"
     workflow="/etc/workflow/models/trainingworkflow/jcr:content/model"/>

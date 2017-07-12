@@ -16,7 +16,7 @@
                 };
 
                 $.ajax({
-                    type: 'GET',
+                    type: 'POST',
                     url: '/bin/slingmodel',
                     success: function (msg) {
                         $('#json').val(msg);
