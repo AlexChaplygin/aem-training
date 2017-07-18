@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          jcr:primaryType="cq:Dialog"
+          title="Social Networks Config Component Configuration"
+          xtype="tabpanel">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <tab
+                jcr:primaryType="cq:Widget"
+                title="Social Networks Config Component Properties"
+                xtype="panel">
+            <items jcr:primaryType="cq:WidgetCollection">
+                <socialNetworksConfig
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Social Network"
+                        name="./socialNetworksConfig"
+                        defaultValue=""
+                        type="select"
+                        xtype="selection">
+                    <options jcr:primaryType="cq:WidgetCollection">
+                        <default
+                                jcr:primaryType="nt:unstructured"
+                                text="Default"
+                                value=""/>
+                        <youtube
+                                jcr:primaryType="nt:unstructured"
+                                text="YouTube"
+                                value="youtube"/>
+                        <linkedin
+                                jcr:primaryType="nt:unstructured"
+                                text="LinkedIn"
+                                value="linkedin"/>
+                        <twitter
+                                jcr:primaryType="nt:unstructured"
+                                text="Twitter"
+                                value="twitter"/>
+                    </options>
+                    <listeners
+                            jcr:primaryType="nt:unstructured"
+                            selectionchanged="function(comp, val, isChecked){
+                                    selectionchanged(comp, val, isChecked);
+                                }"
+                            loadcontent="function(field,record,path) {
+                                loadcontent(field,record,path);
+                                }"/>
+                </socialNetworksConfig>
+
+                <youtubeContainer
+                        itemId="youtubeContainerId"
+                        jcr:primaryType="cq:Widget"
+                        layout="form"
+                        hidden="true"
+                        xtype="container">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <title
+                                jcr:primaryType="cq:Widget"
+                                fieldLabel="Title"
+                                width="500"
+                                name="./youtubeTitle"
+                                xtype="textfield"/>
+                        <image
+                                jcr:primaryType="nt:unstructured"
+                                regexText="Please choose a correct file"
+                                fieldLabel="YouTube Image"
+                                name="./youtubeImage"
+                                rootPath="/content/dam"
+                                width="500"
+                                regex="/\.(png)/"
+                                xtype="pathfield"/>
+                        <url
+                                jcr:primaryType="cq:Widget"
+                                fieldLabel="YouTube Url"
+                                width="500"
+                                name="./youtubeUrl"
+                                xtype="textfield"/>
+                    </items>
+                </youtubeContainer>
+
+                <linkedinContainer
+                        itemId="linkedinContainerId"
+                        jcr:primaryType="cq:Widget"
+                        layout="form"
+                        hidden="true"
+                        xtype="container">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <title
+                                jcr:primaryType="cq:Widget"
+                                fieldLabel="Title"
+                                width="500"
+                                name="./linkedinTitle"
+                                xtype="textfield"/>
+                        <image
+                                jcr:primaryType="nt:unstructured"
+                                regexText="Please choose a correct file"
+                                fieldLabel="LinkedIn Image"
+                                name="./linkedinImage"
+                                width="500"
+                                rootPath="/content/dam"
+                                regex="/\.(png)/"
+                                xtype="pathfield"/>
+                        <url
+                                jcr:primaryType="cq:Widget"
+                                fieldLabel="LinkedIn Url"
+                                width="500"
+                                name="./linkedinUrl"
+                                xtype="textfield"/>
+                    </items>
+                </linkedinContainer>
+
+            </items>
+        </tab>
+    </items>
+</jcr:root>

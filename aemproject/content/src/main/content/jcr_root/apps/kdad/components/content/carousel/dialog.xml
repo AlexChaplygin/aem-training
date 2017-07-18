@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          jcr:primaryType="cq:Dialog"
+          title="Carousel Component Configuration"
+          xtype="tabpanel">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <tab
+                jcr:primaryType="cq:Widget"
+                title="Carousel Component Properties"
+                xtype="panel">
+        </tab>
+    </items>
+</jcr:root>
