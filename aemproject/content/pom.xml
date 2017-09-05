@@ -83,6 +83,11 @@
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+                            <properties>
+                                <acHandling>MERGE</acHandling>
+                            </properties>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
