@@ -33,7 +33,6 @@ public class ResResolverProviderImpl implements ResResolverProvider {
 //    private static final Map<String, Object> AUTH_PROPS =
 //            Collections.singletonMap(ResourceResolverFactory.SUBSERVICE,"reksoft-system-user");
 
-    @Override
     public ResourceResolver getResourceResolver() throws LoginException {
 
         if(AUTH_PROPS == null)

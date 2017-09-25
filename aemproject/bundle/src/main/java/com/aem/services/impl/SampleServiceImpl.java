@@ -22,6 +22,11 @@ import java.util.List;
     @Property(name = "prop1", value = "val1"),
     @Property(name = "prop2", value = "val2")
 })
+/*
+* available at /system/console/configMgr by label from Component annotation, if metatype = true
+* available at /system/console/components by name from Component annotation
+* available at /system/console/services by full interface name
+* */
 public class SampleServiceImpl implements SampleService{
 
     @Property(value = "val3")
