@@ -1,0 +1,17 @@
+<div class="news-item">
+    <sly data-sly-resource="${'news_topic_fragment' @ resourceType='dam/cfm/components/contentfragment'}"/>
+</div>
+<sly data-sly-use.utils="Utils">
+    <p class="h3">Date of article: ${utils.date}</p>
+    <p class="h3">resource path: ${utils.path}</p>
+
+    <div data-sly-use.data="info.js">
+        <sly data-sly-test="${data}">
+            <span class="label label-info">Description: </span>
+            ${data.description @ context='html'}
+        </sly>
+    </div>
+
+    <div data-sly-use.tmpl="info.html" data-sly-call="${tmpl.fourth @ page=currentPage}"></div>
+
+<hr class="three-forth">

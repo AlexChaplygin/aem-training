@@ -1,0 +1,8 @@
+<template data-sly-template.fourth="${@ page}" data-sly-use.tmpl="${'info.js' @ descriptionLength=50}">
+    </br><span class="label label-info">Description from template: </span>
+    ${tmpl.description @ context='html'}
+    </br><span class="label label-info">year from template: </span>
+    ${tmpl.year @ context='html'}
+    </br><span class="label label-info">Page title from template: </span>
+    ${page.title @ context='html'}
+</template>
